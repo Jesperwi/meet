@@ -1,4 +1,12 @@
 
+
+export const extractLocations = (events) => {
+    var extractLocations = events.map((event) => event.location);
+    var locations = [...new Set(extractLocations)];
+    return locations;
+  };
+
+
 // const getToken = async (code) => {
 //   removeQuery();
 //   const encodeCode = encodeURIComponent(code);

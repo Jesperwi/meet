@@ -1,9 +1,27 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import Login from "../src/components/LoginView/Login";
 import { getEvents, checkToken } from "./api";
 
 import './App.css';
+import EventList from './EventList';
+import CitySearch from './CitySearch';
+import Event from './Event';
+import numberOfEvents from './numberOfEvents';
 
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <numberOfEvents />
+        <Event />
+        <CitySearch />
+        <EventList />
+      </div>
+    );
+  }
+}
+
+export default App;
 
 // async componentDidMount() {
 //   const accessToken =
@@ -23,27 +41,3 @@ import './App.css';
 //   }
 //   }
   
-
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
