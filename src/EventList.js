@@ -3,7 +3,7 @@ import Event from './Event';
 
 
 const EventList = ( {events} ) => {
-  console.log('hello', events)
+
     return (
       <ul className="EventList">
         {events.map(event =>

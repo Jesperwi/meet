@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 
 const Event = ( {event} ) => {
-  console.log('hi', event)
 
   const [ showDetails, setShowDetails ] = useState(false);
 

@@ -16,14 +16,21 @@ class App extends Component {
     numberOfEvents: []
   }
 
-  componentDidMount() {
-    getEvents().then((events) => {
-        this.setState({ events, locations: extractLocations(events) });
-    });
-  }
+componentDidMount() {
+  getEvents().then((events) => {
+      this.setState({ events, locations: extractLocations(events) });
+  });
+}
 
 componentWillUnmount(){
   this.mounted = false;
+}
+filteredEvents = (value) => {
+  const oldData = this.state.events;
+  const newData = oldData.slice(0, value);
+  this.setState({ events: newData });
+  console.log('after', this.state.events);
+  // this.setState({ events: this.state.events.slice(0, value) })
 }
 
 getEvents = (location) => {
@@ -34,20 +41,19 @@ getEvents = (location) => {
     this.setState({
       events: locationEvents
     });
-    console.log('bye', locationEvents)
   });
 }
 
-  render() {
-    console.log(this.state.events)
-    return (
-      <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.getEvents} />
-        <NumberOfEvents updateEvents={this.getEvents} />
-        <EventList events={this.state.events} />
-      </div>
-    );
-  }
+render() {
+
+  return (
+    <div className="App">
+      <CitySearch locations={this.state.locations} updateEvents={this.getEvents} />
+      <NumberOfEvents filteredEvents={this.filteredEvents} />
+      <EventList events={this.state.events} />
+    </div>
+  );
+}
 }
 
 export default App;
