@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Event from './Event';
-import { mockData } from './mock-data';
 
-class EventList extends Component {
 
-  render() {
-
+const EventList = ( {events} ) => {
+  console.log('hello', events)
     return (
       <ul className="EventList">
-        {mockData.map(event =>
+        {events.map(event =>
           <li key={event.id}>
             <Event event={event} />
           </li>
         )}
       </ul>
   )};
-}
+
 export default EventList;

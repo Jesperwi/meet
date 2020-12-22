@@ -8,13 +8,13 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import Event from './Event';
 
+
 class App extends Component {
   state = {
     events:[],
     locations: [],
     numberOfEvents: []
   }
-
 
   componentDidMount() {
     this.mounted = true;
@@ -24,6 +24,7 @@ class App extends Component {
       }
     });
   }
+
 componentWillUnmount(){
   this.mounted = false;
 }
@@ -45,7 +46,7 @@ updateEvents = (location) => {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
-        <Event />
+        <Event events={this.state.events} />
       </div>
     );
   }
