@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 
-const Event = ( {events} ) => {
-  console.log('hi', events)
+const Event = ( {event} ) => {
+  console.log('hi', event)
 
   const [ showDetails, setShowDetails ] = useState(false);
 
@@ -10,11 +10,11 @@ const Event = ( {events} ) => {
 
   return (
     <div className="event">
-      {events && (
+      {event && (
         <div>
-      <h2 className="event_name">{events.summary}</h2>
-      <p className="event-date">{events.created}</p>
-      <p>@{events.summary} | {events.location}</p>
+      <h2 className="event_name">{event.summary}</h2>
+      <p className="event-date">{event.created}</p>
+      <p>@{event.summary} | {event.location}</p>
       <div className="event_location">
           <button
             className="details-btn"
@@ -24,8 +24,8 @@ const Event = ( {events} ) => {
           </button>
           {showDetails && <div className="info">
             <h3>About event:</h3>
-            <a href={events.htmlLink}>See detalis on Google Calendar</a>
-            <p>{events.description}</p>
+            <a href={event.htmlLink}>See detalis on Google Calendar</a>
+            <p>{event.description}</p>
           </div>}
       </div>
       </div>

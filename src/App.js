@@ -6,7 +6,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import Event from './Event';
+
 
 
 class App extends Component {
@@ -17,11 +17,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
     getEvents().then((events) => {
-      if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
-      }
     });
   }
 
@@ -29,7 +26,7 @@ componentWillUnmount(){
   this.mounted = false;
 }
 
-updateEvents = (location) => {
+getEvents = (location) => {
   getEvents().then((events) => {
     const locationEvents = (location === 'all') ?
       events :
@@ -37,16 +34,17 @@ updateEvents = (location) => {
     this.setState({
       events: locationEvents
     });
+    console.log('bye', locationEvents)
   });
 }
 
   render() {
+    console.log(this.state.events)
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents} />
+        <CitySearch locations={this.state.locations} updateEvents={this.getEvents} />
+        <NumberOfEvents updateEvents={this.getEvents} />
         <EventList events={this.state.events} />
-        <Event events={this.state.events} />
       </div>
     );
   }
