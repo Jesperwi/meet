@@ -6,26 +6,24 @@ class NumberOfEvents extends Component {
     };
 
 
-    handleInputChanged = (event) => {
-      const value = event.target.value;
-      console.log('josef', value)
-      this.props.filteredEvents(value);
-      this.setState({ numberOfEvents: value });
-  
-      if (value < 1) {
-        this.setState({
-          infoText: "Select number from 1 to 32",
-        });
-      } else {
-        this.setState({
-          infoText: "",
-        });
-      }
-    };
+handleInputChanged = (event) => {
+  const value = event.target.value;
+  this.props.filteredEvents(value);
+  this.setState({ numberOfEvents: value });
+
+  if (value < 1) {
+    this.setState({
+      infoText: "Select number from 1 to 32",
+    });
+  } else {
+    this.setState({
+      infoText: "",
+    });
+  }
+};
 
 render() {
   const { numberOfEvents } = this.state;
-  console.log('innan', this.props)
     return (
       <div className="numberOfEvents">
         <label>Number Of Events:</label>
@@ -38,7 +36,7 @@ render() {
           />
       </div>
     );
-};
+  };
 };
 
 export default NumberOfEvents; 

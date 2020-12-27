@@ -13,7 +13,7 @@ class App extends Component {
   state = {
     events:[],
     locations: [],
-    numberOfEvents: []
+    numberOfEvents: 32
   }
 
 componentDidMount() {
@@ -22,16 +22,15 @@ componentDidMount() {
   });
 }
 
-componentWillUnmount(){
-  this.mounted = false;
-}
+// componentWillUnmount(){
+//   this.mounted = false;
+// }
+
 filteredEvents = (value) => {
   const oldData = this.state.events;
-  const newData = oldData.slice(0, value);
+  const newData = oldData.slice(-0, value);
   this.setState({ events: newData });
-  console.log('after', this.state.events);
-  // this.setState({ events: this.state.events.slice(0, value) })
-}
+};
 
 getEvents = (location) => {
   getEvents().then((events) => {
@@ -48,7 +47,7 @@ render() {
 
   return (
     <div className="App">
-      <CitySearch locations={this.state.locations} updateEvents={this.getEvents} />
+      <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
       <NumberOfEvents filteredEvents={this.filteredEvents} />
       <EventList events={this.state.events} />
     </div>

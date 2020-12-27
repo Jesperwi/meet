@@ -16,22 +16,22 @@ handleInputChanged = (event) => {
     this.setState({
       query: value,
       suggestions,
-    });
-    };
+  });
+};
 
 handleItemClicked = (suggestion) => {
   this.setState({
     query: suggestion,
     showSuggestions: false
-  });
-
-  this.props.updateEvents(suggestion);
+});
+  this.props.getEvents(suggestion);
 }
 
   render() {
     
     return (
       <div className="CitySearch">
+
         <input
           type="text"
           className="city"
