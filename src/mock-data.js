@@ -1,4 +1,3 @@
-
 const mockData = [
     {
         kind: "calendar#event",

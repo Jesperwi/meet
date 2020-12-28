@@ -7,6 +7,7 @@ Scenario: An event element is collapsed by default
 
 Scenario: User can open the event to see the content
     Given the app is loaded
+    And the list of events has been loaded
     When the user clicks the Show Details button
     Then the event content should show
 

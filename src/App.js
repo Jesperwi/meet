@@ -22,14 +22,15 @@ componentDidMount() {
   });
 }
 
-// componentWillUnmount(){
-//   this.mounted = false;
-// }
+componentWillUnmount(){
+  this.mounted = false;
+}
 
 filteredEvents = (value) => {
   const oldData = this.state.events;
   const newData = oldData.slice(-0, value);
   this.setState({ events: newData });
+
 };
 
 getEvents = (location) => {
