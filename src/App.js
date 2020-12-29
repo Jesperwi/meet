@@ -27,10 +27,10 @@ componentWillUnmount(){
 }
 
 filteredEvents = (value) => {
-  const oldData = this.state.events;
-  const newData = oldData.slice(-0, value);
-  this.setState({ events: newData });
-
+  if (!(value)){
+    this.setState({ numberOfEvents: this.state.events.length })
+  }
+  else {this.setState({ numberOfEvents: value })};
 };
 
 getEvents = (location) => {
@@ -49,8 +49,8 @@ render() {
   return (
     <div className="App">
       <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
-      <NumberOfEvents filteredEvents={this.filteredEvents} />
-      <EventList events={this.state.events} />
+      <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} />
+      <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} />
     </div>
   );
 }
