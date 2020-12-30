@@ -13,7 +13,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.unregister();
+serviceWorker.register();
 atatus.config('0ca0ae1383e04c00aa99e4faefc23e92').install();
 
 // If you want to start measuring performance in your app, pass a function
