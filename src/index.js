@@ -13,6 +13,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+
+
 serviceWorker.register();
 atatus.config('0ca0ae1383e04c00aa99e4faefc23e92').install();
 
