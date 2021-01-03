@@ -6,15 +6,16 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-
+import { OfflineAlert } from './Alert';
 
 
 class App extends Component {
   state = {
     events:[],
     locations: [],
-    numberOfEvents: 32
-  }
+    numberOfEvents: 32,
+    alertText: "",
+  };
 
 componentDidMount() {
   getEvents().then((events) => {
@@ -25,6 +26,17 @@ componentDidMount() {
 componentWillUnmount(){
   this.mounted = false;
 }
+
+offlineAlert = () => {
+  if (navigator.onLine === false) {
+    this.setState({
+      alertText:
+        "You are currently offline. Connect to the internet to see the apps whole content",
+    });
+  } else {
+    this.setState({ alertText: "" });
+  }
+};
 
 filteredEvents = (value) => {
   if (!(value)){
@@ -48,6 +60,8 @@ render() {
 
   return (
     <div className="App">
+      <h1>Meet Up</h1>
+      <OfflineAlert text={this.state.alertText} />
       <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
       <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} />
       <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} />
