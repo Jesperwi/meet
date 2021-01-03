@@ -43,4 +43,4 @@ class OfflineAlert extends Alert {
   }
 }
 
-export  { InfoAlert, ErrorAlert };
+export  { InfoAlert, ErrorAlert, OfflineAlert };
