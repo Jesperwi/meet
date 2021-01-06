@@ -6,8 +6,11 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import EventGenre from './EventGenre';
 import { OfflineAlert } from './Alert';
-
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
 
 class App extends Component {
   state = {
@@ -16,16 +19,19 @@ class App extends Component {
     numberOfEvents: 32,
     alertText: "",
   };
-
-componentDidMount() {
-  getEvents().then((events) => {
-      this.setState({ events, locations: extractLocations(events) });
-  });
-}
-
-componentWillUnmount(){
-  this.mounted = false;
-}
+  
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events,
+          locations: extractLocations(events),
+        });
+      }
+    });
+    window.addEventListener("online", this.offlineAlert());
+  }
 
 offlineAlert = () => {
   if (navigator.onLine === false) {
@@ -37,6 +43,10 @@ offlineAlert = () => {
     this.setState({ alertText: "" });
   }
 };
+
+componentWillUnmount(){
+  this.mounted = false;
+}
 
 filteredEvents = (value) => {
   if (!(value)){
@@ -56,37 +66,47 @@ getEvents = (location) => {
   });
 }
 
+getData = () => {
+  const { locations, events } = this.state;
+  const data = locations.map((location)=>{
+    const number = events.filter((event) => 
+    event.location === location).length;
+    const city = location.split(' ').shift()
+    return {city, number};
+  })
+  return data;
+};
+
 render() {
+  
+  const { locations, numberOfEvents, events } = this.state;
 
   return (
     <div className="App">
       <h1>Meet Up</h1>
+      <h4>Choose your nearest city</h4>
       <OfflineAlert text={this.state.alertText} />
-      <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
-      <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} />
-      <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} />
+      <CitySearch locations={this.state.locations} getEvents={this.getEvents} locationChart={locations} />
+      <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} numberOfEventChart={numberOfEvents} />
+      <div className="data-vis-wrapper">
+        <EventGenre eventChart={events} locations={locations} />
+        <ResponsiveContainer height={400} >
+            <ScatterChart 
+            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+
+            <CartesianGrid />
+            <XAxis type="category" dataKey="city" name="city" />
+            <YAxis type="number" dataKey="number" name="number of events"
+            allowDecimals={false} />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+            <Scatter data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
+        </ResponsiveContainer>
+      </div>
+      <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} eventChart={events} />
     </div>
   );
 }
 }
 
 export default App;
-
-// async componentDidMount() {
-//   const accessToken =
-//   localStorage.getItem("access_token");
-//   const validToken = accessToken !== null ? await
-//   checkToken(accessToken) : false;
-//   this.setState({ tokenCheck: validToken });
-//   if(validToken === true) this.updateEvents()
-//   const searchParams = new
-//   URLSearchParams(window.location.search);
-//   const code = searchParams.get("code");
-//   this.mounted = true;
-//   if (code && this.mounted === true && validToken
-//   === false){
-//   this.setState({tokenCheck:true });
-//   this.updateEvents()
-//   }
-//   }
-  
