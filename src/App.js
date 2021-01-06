@@ -19,7 +19,7 @@ class App extends Component {
     numberOfEvents: 32,
     alertText: "",
   };
-  
+
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
@@ -86,10 +86,10 @@ render() {
       <h1>Meet Up</h1>
       <h4>Choose your nearest city</h4>
       <OfflineAlert text={this.state.alertText} />
-      <CitySearch locations={this.state.locations} getEvents={this.getEvents} locationChart={locations} />
+      <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
       <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} numberOfEventChart={numberOfEvents} />
       <div className="data-vis-wrapper">
-        <EventGenre eventChart={events} locations={locations} />
+        <EventGenre events={events} locations={locations} />
         <ResponsiveContainer height={400} >
             <ScatterChart 
             margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>

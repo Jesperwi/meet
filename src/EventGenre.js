@@ -3,12 +3,14 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer,
 } from 'recharts';
 
+
 const EventGenre = ({ events }) => {
 
 const [data, setData] = useState([]);
 
 useEffect(() =>
   { setData(() => getData()); 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events]);
   
 const getData =() => {
@@ -21,7 +23,7 @@ const getData =() => {
   });
   return data;
 };
-  
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 return (
