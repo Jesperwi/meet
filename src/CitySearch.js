@@ -19,13 +19,13 @@ handleInputChanged = (event) => {
   if (suggestions.length === 0) {
     this.setState({
       query: value,
-      infoText: 'We can not find the city you are looking for. Please try another city',
+      infoText: 'We can not find the city you are looking for.',
     });
   } else {
     return this.setState({
       query: value,
       suggestions,
-      infoText:''
+      infoText:'',
     });
   }
 };

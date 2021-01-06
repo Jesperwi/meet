@@ -22,7 +22,7 @@ const Event = ( {event} ) => {
           {buttonText}
           </button>
           {showDetails && <div className="info">
-            <h3>About event:</h3>
+            <h3>About the event:</h3>
             <a href={event.htmlLink}>See detalis on Google Calendar</a>
             <p>{event.description}</p>
           </div>}

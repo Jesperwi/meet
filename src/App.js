@@ -83,28 +83,28 @@ render() {
 
   return (
     <div className="App">
-      <h1 className="HeadLine">Meet Up</h1>
-      <OfflineAlert text={this.state.alertText} />
-      <div className="searchBars">
-      <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
-      <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} numberOfEventChart={numberOfEvents} />
-      </div>
+       <h1 className="HeadLine">Meet Up</h1>
+        <OfflineAlert text={this.state.alertText} />
+          <div className="searchBars">
+            <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
+            <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} numberOfEventChart={numberOfEvents} />
+          </div>
       <div className="data-vis-wrapper">
         <EventGenre events={events} locations={locations} />
-        <ResponsiveContainer height={400} >
+          <ResponsiveContainer height={400} >
             <ScatterChart 
             margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
 
-            <CartesianGrid />
-            <XAxis type="category" dataKey="city" name="city" />
-            <YAxis type="number" dataKey="number" name="number of events"
-            allowDecimals={false} />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events"
+              allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
       </div>
-      <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} eventChart={events} />
+        <EventList events={this.state.events.slice(0, this.state.numberOfEvents)} eventChart={events} />
     </div>
   );
 }
