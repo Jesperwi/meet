@@ -26,7 +26,7 @@ render() {
 
     return (
       <div className="numberOfEvents">
-        <label>Number Of Events:</label>
+        <label className="searchText">Number Of Events:</label>
         <input
           type="text"
           className="city"

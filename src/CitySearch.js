@@ -43,6 +43,7 @@ handleItemClicked = (suggestion) => {
     return (
     <div className="CitySearch">
       <InfoAlert text={this.state.infoText} />
+      <label className="searchText">Choose your nearest city:</label>
         <input
           type="text"
           className="city"

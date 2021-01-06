@@ -83,11 +83,12 @@ render() {
 
   return (
     <div className="App">
-      <h1>Meet Up</h1>
-      <h4>Choose your nearest city</h4>
+      <h1 className="HeadLine">Meet Up</h1>
       <OfflineAlert text={this.state.alertText} />
+      <div className="searchBars">
       <CitySearch locations={this.state.locations} getEvents={this.getEvents} />
       <NumberOfEvents filteredEvents={this.filteredEvents} numberOfEvents={this.state.numberOfEvents} numberOfEventChart={numberOfEvents} />
+      </div>
       <div className="data-vis-wrapper">
         <EventGenre events={events} locations={locations} />
         <ResponsiveContainer height={400} >

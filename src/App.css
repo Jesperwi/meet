@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .App {
   text-align: center;
   padding: 2% 5%;
+  background-image: linear-gradient(rgb(137, 181, 231)1%, white 10%);
 }
 
 .App * {
@@ -20,8 +23,27 @@ p {
 .display-none {
   display: none;
 }
+
 .showSuggestions {
   display: block;
+}
+
+.HeadLine {
+  font-size: 45px;
+  display: flex;
+  font-family: 'Lobster', cursive;
+  text-transform: capitalize;
+  text-shadow: white 3px 3px 3px;
+}
+
+.searchText {
+  font-family:'Roboto';
+}
+
+.searchBars {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20em;
 }
 
 input[type="text"],
@@ -139,10 +161,12 @@ input[type="number"] {
   align-items: center;
   flex-direction: column;
 }
+
 .data-vis-wrapper .recharts-responsive-container {
   min-width: 100%;
   display: flex;
 }
+
 .recharts-surface {
   overflow: visible;
 }
@@ -168,12 +192,15 @@ input[type="number"] {
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
 .google-btn:hover {
   box-shadow: 0 0 6px #4285f4;
 }
+
 .google-btn:active {
   background: #1669f2;
 }
+
 .google-icon-wrapper {
   position: absolute;
   margin-top: 1px;
@@ -183,6 +210,7 @@ input[type="number"] {
   border-radius: 2px;
   background-color: #fff;
 }
+
 .google-icon {
   position: absolute;
   margin-top: 11px;
@@ -190,6 +218,7 @@ input[type="number"] {
   width: 18px;
   height: 18px;
 }
+
 .btn-text {
   float: right;
   margin: 11px 11px 0 0;
@@ -199,15 +228,32 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
-
 @media only screen and (min-width: 992px) {
-  .data-vis-wrapper {
-    flex-direction: row;
-  }
-  .data-vis-wrapper .recharts-responsive-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    min-width: auto;
-    margin: 0 auto;
-  }
+
+
+.data-vis-wrapper {
+  flex-direction: row;
+}
+
+.data-vis-wrapper .recharts-responsive-container {
+  flex-basis: 50%;
+  max-width: 50%;
+  min-width: auto;
+  margin: 0 auto;
+}
+}
+
+@media only screen and (max-width: 800px) {
+
+.HeadLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBars {
+  flex-direction: column;
+  margin: none;
+  height: 200px;
+}
 }
