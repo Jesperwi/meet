@@ -6,19 +6,19 @@ class Alert extends Component {
     this.color = null;
   }
 
-  getStyle = () => {
-    return {
-      color: this.color,
-    };
-  }
+getStyle = () => {
+  return {
+    color: this.color,
+  };
+}
 
-  render() {
-    return (
-      <div className="Alert">
-        <p style={this.getStyle()}>{this.props.text}</p>
-      </div>
-    );
-  }
+render() {
+  return (
+    <div className="Alert">
+      <p style={this.getStyle()}>{this.props.text}</p>
+    </div>
+  );
+}
 }
 
 class InfoAlert extends Alert {

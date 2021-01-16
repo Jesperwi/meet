@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ErrorAlert } from './Alert';
+import { ErrorAlert } from '../AlertView/Alert';
 
 class NumberOfEvents extends Component {
     state = {
@@ -27,12 +27,12 @@ render() {
     return (
       <div className="numberOfEvents">
         <label className="searchText">Number Of Events:</label>
-        <input
-          type="text"
-          className="city"
-          id="numberOfEvents"
-          onChange={this.handleInputChanged}
-          />
+          <input
+            type="text"
+            className="city"
+            id="numberOfEvents"
+            onChange={this.handleInputChanged}
+            />
           <ErrorAlert text={this.state.infoText} />
       </div>
     );

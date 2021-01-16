@@ -4,7 +4,7 @@ import App from '../App';
 import { mockData } from '../mock-data';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 
-import CitySearch from "../CitySearch";
+import CitySearch from "../components/CitySearchView/CitySearch";
 import { shallow } from "enzyme";
 import { extractLocations } from '../api';
 

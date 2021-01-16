@@ -3,11 +3,11 @@ import { getEvents, extractLocations } from "./api";
 import "./nprogress.css";
 
 import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
-import EventGenre from './EventGenre';
-import { OfflineAlert } from './Alert';
+import EventList from './components/EventListView/EventList';
+import CitySearch from './components/CitySearchView/CitySearch';
+import NumberOfEvents from './components/NumberOfEventsView/NumberOfEvents';
+import EventGenre from './components/EventGenreView/EventGenre';
+import { OfflineAlert } from './components/AlertView/Alert';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
@@ -70,7 +70,7 @@ getData = () => {
   const { locations, events } = this.state;
   const data = locations.map((location)=>{
     const number = events.filter((event) => 
-    event.location === location).length;
+      event.location === location).length;
     const city = location.split(' ').shift()
     return {city, number};
   })
